@@ -1,0 +1,1 @@
+from .hotline import register_hotline_handlers
