@@ -1,6 +1,5 @@
 import sqlite3
 
-
 con = sqlite3.connect('database/data.db')
 cursor = con.cursor()
 
@@ -21,7 +20,6 @@ class db():
     def new_user(self, table, values):
         cursor.execute(f'INSERT INTO {table} VALUES {values}')
         con.commit()
-
 
     def inset_value_to_table(self, table, values):
         cursor.execute(f'INSERT INTO \'{table}\' VALUES ({values})')
@@ -56,6 +54,18 @@ class db():
         cursor.execute(f'SELECT {value} FROM {table}')
         return cursor.fetchone()[0]
 
+    def select_value_where(self, value, where_name, where_value, table):
+        cursor.execute(f'SELECT {value} FROM {table} WHERE {where_name} = {where_value}')
+        return cursor.fetchone()[0]
+
+    def add_value_where(self, name, value, where_name, where_value, table):
+        cursor.execute(f'UPDATE {table} SET {name} = {name} + {value} WHERE {where_name} = {where_value}')
+        con.commit()
+
+    def minus_value_where(self, name, value, where_name, where_value, table):
+        cursor.execute(f'UPDATE {table} SET {name} = {name} - {value} WHERE {where_name} = {where_value}')
+        con.commit()
+
     def set_value_from_table(self, name, value, table):
         cursor.execute(f'UPDATE {table} SET {name} = {value}')
         con.commit()
@@ -80,8 +90,6 @@ class db():
     def plus_value(self, value, name, table):
         cursor.execute(f'UPDATE {table} SET {name} = {name} + {value} WHERE user_id = {self.user_id}')
         con.commit()
-    
-        
 
     def is_table(self, table):
         try:

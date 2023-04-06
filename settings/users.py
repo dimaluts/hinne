@@ -14,7 +14,7 @@ def if_user(user_id, message):
         pass
     else:
         if message.chat.type == 'supergroup':
-            user.new_user('chats', f'(\'{message.chat.id}\')')
+            user.new_user('chats', f'(\'{message.chat.id}\', {0})')
         
     
 

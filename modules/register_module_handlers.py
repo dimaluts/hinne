@@ -8,8 +8,9 @@ from .echonomy import register_give_value_handlers, register_main_commands_handl
 from .rp import register_rp_commands_handler
 from .games import register_rullete_handlers, register_dice_handlers
 from .send_ad import register_ad_handlers
-
+from .echonomy import register_kazna_handlers
 def register_module_handler(dp):
+    register_kazna_handlers(dp)
     register_ad_handlers(dp)
     register_dice_handlers(dp)
     register_rullete_handlers(dp)
